@@ -132,6 +132,7 @@
             this.Controls.Add(this.lboShow);
             this.Name = "Form1";
             this.Text = "Northwind form";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
