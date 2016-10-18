@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace ADO_Gruppuppgift
 {
@@ -19,7 +21,8 @@ namespace ADO_Gruppuppgift
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            string connectionString="Data Source=MSSQL;Initial Catalog=Northwind;Integrated Security"
+            using (SqlConnection connection = new SqlConnection(""))
         }
     }
 }
