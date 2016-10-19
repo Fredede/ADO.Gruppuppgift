@@ -152,24 +152,20 @@ namespace ADO_Gruppuppgift
         private void btnCreate_Click(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NORTHWND;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            using (SqlCommand command = connection.CreateCommand())
-            {
-                connection.Open();
+            //using (SqlCommand command = connection.CreateCommand()) {
 
-                command.CommandText = "SELECT UnitPrice FROM Products " +
-                                                      "WHERE ProductName = @pn";
+            string query = "INSERT INTO Products (ProductName, UnitPrice, CategoryID)";
+            query += " VALUES (@ProductName, @UnitPrice, @CategoryID)";
+            connection.Open();
 
-                command.Parameters.AddWithValue("@pn", lboShow.SelectedItem);
+            SqlCommand myCommand = new SqlCommand(query, connection);
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        tbxPrice.Text = (reader["UnitPrice"].ToString());
-                    }
-                }
-                command.ExecuteNonQuery();
-            }
+            myCommand.Parameters.AddWithValue("@ProductName", tbxNewProductName.Text);
+            myCommand.Parameters.AddWithValue("@UnitPrice", tbxNewPrice.Text);
+            myCommand.Parameters.AddWithValue("@CategoryID", tbxNewCategoryID.Text);
+
+
+            myCommand.ExecuteNonQuery();
             connection.Close();
         }
     }
