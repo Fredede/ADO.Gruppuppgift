@@ -121,7 +121,7 @@ namespace ADO_Gruppuppgift
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
                 tbxProduct.Text = productName.ToString();    
-            FindNameAndPrice();
+                FindNameAndPrice();
             }
         }
         public void FindNameAndPrice()
@@ -147,6 +147,30 @@ namespace ADO_Gruppuppgift
             }
             connection.Close();
 
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NORTHWND;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = "SELECT UnitPrice FROM Products " +
+                                                      "WHERE ProductName = @pn";
+
+                command.Parameters.AddWithValue("@pn", lboShow.SelectedItem);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        tbxPrice.Text = (reader["UnitPrice"].ToString());
+                    }
+                }
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
         }
     }
 }

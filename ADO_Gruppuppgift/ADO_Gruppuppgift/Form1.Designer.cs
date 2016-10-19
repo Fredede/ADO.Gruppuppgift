@@ -36,6 +36,8 @@
             this.tbxPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lboShow
@@ -46,7 +48,6 @@
             this.lboShow.Name = "lboShow";
             this.lboShow.Size = new System.Drawing.Size(234, 500);
             this.lboShow.TabIndex = 0;
-            //this.lboShow.DoubleClick += new System.EventHandler(this.lboShow_DoubleClick);
             // 
             // lboCategories
             // 
@@ -59,7 +60,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(12, 475);
+            this.btnUpdate.Location = new System.Drawing.Point(4, 416);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(104, 42);
             this.btnUpdate.TabIndex = 2;
@@ -69,7 +70,7 @@
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(12, 416);
+            this.btnShow.Location = new System.Drawing.Point(4, 475);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(104, 42);
             this.btnShow.TabIndex = 4;
@@ -109,11 +110,32 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Unit price";
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(122, 416);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(104, 42);
+            this.btnCreate.TabIndex = 9;
+            this.btnCreate.Text = "Skapa";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(122, 475);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(104, 42);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Ta bort";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 529);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxPrice);
@@ -140,6 +162,8 @@
         private System.Windows.Forms.TextBox tbxPrice;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
