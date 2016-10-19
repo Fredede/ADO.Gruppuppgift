@@ -53,7 +53,7 @@ namespace ADO_Gruppuppgift
             int index = this.lboCategories.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
-                    DisplayProducts();
+                DisplayProducts();
             }
         }
 
@@ -95,7 +95,7 @@ namespace ADO_Gruppuppgift
 
             using (SqlCommand command = connection.CreateCommand())
             {
-                command.CommandText = "UPDATE Products SET ProductName = @nm, UnitPrice = @pr " + 
+                command.CommandText = "UPDATE Products SET ProductName = @nm, UnitPrice = @pr " +
                                                       "WHERE ProductName = @pn";
 
                 command.Parameters.AddWithValue("@pn", lboShow.SelectedItem);
@@ -120,7 +120,7 @@ namespace ADO_Gruppuppgift
             int index = this.lboShow.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
-                tbxProduct.Text = productName.ToString();    
+                tbxProduct.Text = productName.ToString();
                 FindNameAndPrice();
             }
         }
@@ -167,6 +167,21 @@ namespace ADO_Gruppuppgift
 
             myCommand.ExecuteNonQuery();
             connection.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NORTHWND;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            {
+                con.Open();
+                using (SqlCommand command = new SqlCommand("DELETE FROM Products WHERE ProductName = @ProductName", con))
+                {
+                    command.Parameters.AddWithValue("@ProductName", lboShow.SelectedItem);
+
+                    command.ExecuteNonQuery();
+                }
+                con.Close();
+            }
         }
     }
 }
