@@ -31,7 +31,6 @@
             this.lboShow = new System.Windows.Forms.ListBox();
             this.lboCategories = new System.Windows.Forms.ListBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnShow = new System.Windows.Forms.Button();
             this.tbxProduct = new System.Windows.Forms.TextBox();
             this.tbxPrice = new System.Windows.Forms.TextBox();
@@ -65,15 +64,7 @@
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Uppdatera";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(122, 475);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(104, 42);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Spara";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnShow
             // 
@@ -127,7 +118,6 @@
             this.Controls.Add(this.tbxPrice);
             this.Controls.Add(this.tbxProduct);
             this.Controls.Add(this.btnShow);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lboCategories);
             this.Controls.Add(this.lboShow);
@@ -144,7 +134,6 @@
         private System.Windows.Forms.ListBox lboShow;
         private System.Windows.Forms.ListBox lboCategories;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.TextBox tbxProduct;
         private System.Windows.Forms.TextBox tbxPrice;

@@ -19,6 +19,7 @@ namespace ADO_Gruppuppgift
             InitializeComponent();
 
             lboCategories.MouseDoubleClick += new MouseEventHandler(lboCategories_DoubleClick);
+            lboShow.MouseDoubleClick += new MouseEventHandler(lboShow_DoubleClick);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -58,6 +59,21 @@ namespace ADO_Gruppuppgift
             }
         }
 
+        private void lboShow_DoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = this.lboShow.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                FindNameAndPrice();
+
+            }
+        }
+
+        public void FindNameAndPrice()
+        {
+
+        }
+
         public void DisplayProducts()
         {
             lboShow.Items.Clear();
@@ -87,6 +103,32 @@ namespace ADO_Gruppuppgift
             connection.Close();
         }
 
+        public void UpdateProducts()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NORTHWND;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
-}
+            string newProductName = tbxProduct.Text;
+            string newUnitPrice = tbxPrice.Text;
+
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandText = "UPDATE Products SET ProductName = @nm, UnitPrice = @pr " + 
+                                                      "WHERE ProductName = @pn";
+
+                command.Parameters.AddWithValue("@pn", lboShow.SelectedItem);
+                command.Parameters.AddWithValue("@nm", newProductName);
+                command.Parameters.AddWithValue("@pr", newUnitPrice);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateProducts();
+        }
+    }
 }
