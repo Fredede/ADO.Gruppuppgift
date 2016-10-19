@@ -24,8 +24,6 @@ namespace ADO_Gruppuppgift
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //string connectionString="Data Source=MSSQL;Initial Catalog=Northwind;Integrated Security"
-            //using (SqlConnection connection = new SqlConnection(""))
         }
 
         private void btnShow_Click(object sender, EventArgs e)
@@ -57,21 +55,6 @@ namespace ADO_Gruppuppgift
             {
                     DisplayProducts();
             }
-        }
-
-        private void lboShow_DoubleClick(object sender, MouseEventArgs e)
-        {
-            int index = this.lboShow.IndexFromPoint(e.Location);
-            if (index != System.Windows.Forms.ListBox.NoMatches)
-            {
-                FindNameAndPrice();
-
-            }
-        }
-
-        public void FindNameAndPrice()
-        {
-
         }
 
         public void DisplayProducts()
@@ -129,6 +112,41 @@ namespace ADO_Gruppuppgift
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             UpdateProducts();
+        }
+
+        private void lboShow_DoubleClick(object sender, MouseEventArgs e)
+        {
+            var productName = lboShow.SelectedItem;
+            int index = this.lboShow.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                tbxProduct.Text = productName.ToString();    
+            FindNameAndPrice();
+            }
+        }
+        public void FindNameAndPrice()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NORTHWND;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = "SELECT UnitPrice FROM Products " +
+                                                      "WHERE ProductName = @pn";
+
+                command.Parameters.AddWithValue("@pn", lboShow.SelectedItem);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        tbxPrice.Text = (reader["UnitPrice"].ToString());
+                    }
+                }
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+
         }
     }
 }

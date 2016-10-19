@@ -46,6 +46,7 @@
             this.lboShow.Name = "lboShow";
             this.lboShow.Size = new System.Drawing.Size(234, 500);
             this.lboShow.TabIndex = 0;
+            //this.lboShow.DoubleClick += new System.EventHandler(this.lboShow_DoubleClick);
             // 
             // lboCategories
             // 
