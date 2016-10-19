@@ -43,7 +43,7 @@
             // 
             this.lboShow.FormattingEnabled = true;
             this.lboShow.ItemHeight = 16;
-            this.lboShow.Location = new System.Drawing.Point(239, 12);
+            this.lboShow.Location = new System.Drawing.Point(486, 17);
             this.lboShow.Name = "lboShow";
             this.lboShow.Size = new System.Drawing.Size(234, 500);
             this.lboShow.TabIndex = 0;
@@ -52,7 +52,7 @@
             // 
             this.lboCategories.FormattingEnabled = true;
             this.lboCategories.ItemHeight = 16;
-            this.lboCategories.Location = new System.Drawing.Point(479, 12);
+            this.lboCategories.Location = new System.Drawing.Point(239, 17);
             this.lboCategories.Name = "lboCategories";
             this.lboCategories.Size = new System.Drawing.Size(241, 500);
             this.lboCategories.TabIndex = 1;
@@ -83,6 +83,7 @@
             this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Visa";
             this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // tbxProduct
             // 
