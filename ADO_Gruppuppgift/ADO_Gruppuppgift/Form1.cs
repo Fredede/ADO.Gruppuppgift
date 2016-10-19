@@ -64,12 +64,18 @@ namespace ADO_Gruppuppgift
             SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NORTHWND;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             connection.Open();
+
+            var cat = connection.CreateCommand();
+            cat.CommandText = "SELECT CategoryID FROM Categories WHERE CategoryName=@CategoryName";
+            cat.Parameters.AddWithValue("@CategoryName", lboCategories.SelectedItem);
+            int catID = (int)cat.ExecuteScalar();
+
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection;
-
-                command.CommandText = "SELECT ProductName FROM Products" /* +
-                                      "WHERE[CategoryID] LIKE @CategoryID"*/;
+                command.CommandText = "SELECT ProductName FROM Products " +
+                                      "WHERE [CategoryID] LIKE @CategoryID";
+                command.Parameters.AddWithValue("@CategoryID", catID);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
