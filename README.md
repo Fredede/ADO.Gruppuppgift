@@ -7,4 +7,4 @@ Mary,
 Senan
 
 Kod:
-Fredrik Jusslin
+Fredrik
